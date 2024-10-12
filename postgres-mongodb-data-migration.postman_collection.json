@@ -1,0 +1,32 @@
+{
+	"info": {
+		"_postman_id": "1d5ecdb4-8d9d-4f67-9160-5034abfd8af6",
+		"name": "postgres-mongodb-data-migration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2696806"
+	},
+	"item": [
+		{
+			"name": "#1. test-get-result",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/data-migration/testGetResult",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"data-migration",
+						"testGetResult"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
