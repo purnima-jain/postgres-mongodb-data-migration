@@ -19,6 +19,7 @@ services:
       - postgres:/data/postgres
       - ./docker/postgres/sql:/docker-entrypoint-initdb.d
 
+
   pgadmin:
     container_name: pgadmin_container 
     image: "dpage/pgadmin4:8.12.0"
@@ -38,6 +39,18 @@ services:
        - ./docker/pgAdmin/docker_pgadmin_servers.json:/pgadmin4/servers.json
     depends_on:
       - postgres
+    restart: always
+
+
+  adminer:
+    container_name: adminer_container
+    image: "adminer:4.8.1"
+    ports:
+      - 15434:8080
+    depends_on:
+      - postgres
+    restart: always
+
       
 volumes:
     postgres:
