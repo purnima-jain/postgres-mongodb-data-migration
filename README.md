@@ -31,3 +31,6 @@ PGADMIN_PORT=6666
 ## To Open PgAdmin in browser
 URL: http://localhost:15433/browser/
 
+## To Open Adminer in browser
+URL: http://localhost:15434/
+
