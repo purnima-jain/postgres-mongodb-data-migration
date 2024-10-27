@@ -1,0 +1,45 @@
+version: '3.9'
+
+services:
+  postgres:
+    container_name: postgres_container 
+    image: "postgres:16.4"
+    environment:
+      POSTGRES_DB: "postgres_db" # instructs PostgreSQL container to automatically create a default database with the provided name
+      POSTGRES_USER: "postgres_user" # sets the default username
+      POSTGRES_PASSWORD: "postgres_password" # sets the custom password for the PostgreSQL user
+      PGDATA: "/data/postgres" # Defines a default location or subdirectory for database files
+    ports:
+      - "15432:5432"
+    # Most relational databases support a special docker-entrypoint-initdb.d folder. 
+    # This folder is used to initialise the database automatically when the container is first created. 
+    # You can put .sql or .sh scripts there, and Docker will automatically run them. 
+    # This happens only the first time the container is started, not on subsequent restarts.
+    volumes:
+      - postgres:/data/postgres
+      - ./docker/postgres/sql:/docker-entrypoint-initdb.d
+
+  pgadmin:
+    container_name: pgadmin_container 
+    image: "dpage/pgadmin4:8.12.0"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org} # Sets the default credentials for the pgAdmin user
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-pgadmin_password} # Sets the default credentials for the pgAdmin user
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+      # ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org} - This setup means that 
+      # if PGADMIN_DEFAULT_EMAIL is defined in the host environment, 
+      #     then its value is used. 
+      # Otherwise, it will fall back to the default value
+    ports: 
+      - "${PGADMIN_PORT:-15433}:80"
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+       - ./docker/pgAdmin/docker_pgadmin_servers.json:/pgadmin4/servers.json
+    depends_on:
+      - postgres
+      
+volumes:
+    postgres:
+    pgadmin:
+    
