@@ -10,4 +10,10 @@ CREATE TABLE users (
     email VARCHAR(100) NOT NULL
 );
 
+CREATE TABLE events (
+    id SERIAL PRIMARY KEY,
+    event_name VARCHAR(50) NOT NULL,
+    event_status VARCHAR(100) NOT NULL
+);
+
 COMMIT;

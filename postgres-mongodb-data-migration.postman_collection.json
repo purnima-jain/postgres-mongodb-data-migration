@@ -27,6 +27,28 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "#2. get-events-in-progress",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/data-migration/getEventsInProgress",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"data-migration",
+						"getEventsInProgress"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
